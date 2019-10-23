@@ -62,7 +62,7 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
-  
+
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
     # - path: url path is /imageCaptions
@@ -72,5 +72,29 @@ functions:
       - http:
           path: imageCaptions
           method: get
+          cors: true
+          authorizer: aws_iam
+
+  update:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /imageCaptions/{id}
+    # - method: PUT request
+    handler: update.main
+    events:
+      - http:
+          path: imageCaptions/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+
+  delete:
+    # Defines an HTTP API endpoint that calls the main function in delete.js
+    # - path: url path is /imageCaptions/{id}
+    # - method: DELETE request
+    handler: delete.main
+    events:
+      - http:
+          path: imageCaptions/{id}
+          method: delete
           cors: true
           authorizer: aws_iam
