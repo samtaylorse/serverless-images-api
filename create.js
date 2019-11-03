@@ -8,8 +8,8 @@ export async function main(event, context) {
     TableName: process.env.tableName,
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
-      imageCaptionId: uuid.v1(),
-      content: data.content,
+      id: uuid.v1(),
+      caption: data.caption,
       imageUrl: data.imageUrl,
       createdAt: Date.now()
     }

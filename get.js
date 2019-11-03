@@ -9,14 +9,13 @@ export async function main(event, context) {
     // - 'noteId': path parameter
     Key: {
       userId: event.requestContext.identity.cognitoIdentityId,
-      imageCaptionId: event.pathParameters.id
+      id: event.pathParameters.id
     }
   };
 
   try {
     const result = await dynamoDbLib.call("get", params);
     if (result.Item) {
-      // Return the retrieved item
       return success(result.Item);
     } else {
       return failure({ status: false, error: "Item not found." });
